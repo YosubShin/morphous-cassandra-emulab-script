@@ -1,0 +1,43 @@
+## Created in 130731 and copied from MongoTwo experiment's setup
+
+set ns [new Simulator]
+source tb_compat.tcl
+
+set maxnode 10
+set ostype CentOS-MongoDB
+set nodetype "d710"
+set bandwidth 1Gb
+
+set lan ""
+# Nodes
+for {set i 0} {$i < $maxnode} {incr i} {
+        set node($i) [$ns node]
+        tb-set-node-os $node($i) $ostype
+        tb-set-hardware $node($i) $nodetype
+        append lan "$node($i) "
+}
+
+# Topology
+#LAN
+set lan0 [$ns make-lan "$lan" $bandwidth 0ms]
+
+#set switchnum 4
+#for {set i 0} {$i < $switchnum} {incr i} {
+#        set switch($i) [$ns node]
+#        tb-set-hardware $switch($i) pc3000
+#}
+
+#for {set i 0} {$i < 3} {incr i} {
+#        for {set j 0} {$j < 3} {incr j} {
+#                set link($i$j) [$ns duplex-link $switch($i) $node([expr $i*3+$j]) 100Mb 0ms #DropTail]
+#        }
+#        set link4($i) [$ns duplex-link $switch($i) $switch(3) 100Mb 0ms DropTail]
+#}
+
+#set link09 [$ns duplex-link $switch(3) $node(9) 100Mb 0ms DropTail]
+
+$ns rtproto Static
+$ns run
+
+# NetlabClient generated file ends here.
+# Finished at: 11/4/13 9:53 AM
