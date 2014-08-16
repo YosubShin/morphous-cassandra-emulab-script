@@ -71,7 +71,7 @@ else
 fi
 # Replace conf/cassandra.yaml file's listen_address with the current node's name
 # sed -i "s/^listen_address: .*/listen_address: $NODE_ADDRESS/" $CASSANDRA_HOME/conf/cassandra.yaml
-sudo cat > $CASSANDRA_HOME/conf/cassandra.yaml <<EOF
+sudo bash -c "cat > $CASSANDRA_HOME/conf/cassandra.yaml" <<EOF
 # Cassandra storage config YAML 
 
 # NOTE:
