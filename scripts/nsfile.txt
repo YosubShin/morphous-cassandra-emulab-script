@@ -1,4 +1,7 @@
-## Created in 130731 and copied from MongoTwo experiment's setup
+# DATE       AUTHOR      COMMENT
+# ---------- ----------- -----------------------------------------------------
+# 2013-07-31 N/A         Copied from MongoTwo experiment's setup
+# 2014-08-16 Yosub       
 
 set ns [new Simulator]
 source tb_compat.tcl
