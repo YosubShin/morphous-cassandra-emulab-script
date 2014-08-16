@@ -18,7 +18,7 @@ for {set i 0} {$i < $maxnode} {incr i} {
         tb-set-node-os $node($i) $ostype
         tb-set-hardware $node($i) $nodetype
         append lan "$node($i) "
-        tb-set-node-startcmd $node($i) "wget https://raw.githubusercontent.com/YosubShin/morphous-cassandra-emulab-script/master/scripts/init-server-script-centos6.3.sh ; /users/yossupp/init-server-script-centos6.3.sh node-$i >& /tmp/init-script.log"
+        tb-set-node-startcmd $node($i) "wget https://raw.githubusercontent.com/YosubShin/morphous-cassandra-emulab-script/master/scripts/init-server-script-centos6.3.sh; chmod +x /users/yossupp/init-server-script-centos6.3.sh; /users/yossupp/init-server-script-centos6.3.sh node-$i >& /tmp/init-script.log"
 }
 
 # Load generator
