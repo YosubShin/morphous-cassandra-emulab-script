@@ -7,7 +7,6 @@ set ns [new Simulator]
 source tb_compat.tcl
 
 set maxnode 3
-# set ostype CentOS-MongoDB
 set ostype CENTOS63-64-UPD
 set nodetype "d710"
 set bandwidth 1Gb
@@ -19,7 +18,15 @@ for {set i 0} {$i < $maxnode} {incr i} {
         tb-set-node-os $node($i) $ostype
         tb-set-hardware $node($i) $nodetype
         append lan "$node($i) "
+        tb-set-startcmd "wget https://raw.githubusercontent.com/YosubShin/morphous-cassandra-emulab-script/master/scripts/init-server-script-centos6.3.sh ; sudo ./init-server-script-centos6.3.sh"
 }
+
+# Load generator
+set i 0
+set loadgen($i) [$ns node]
+tb-set-node-os $loadgen($i) $ostype
+tb-set-hardware $loadgen($i) $nodetype
+append lan "$loadgen($i) "
 
 # Topology
 #LAN
