@@ -17,30 +17,30 @@ CASSANDRA_PATH=/scratch
 
 # Install necessary binaries
 echo "## Installing necessary binaries ..."
-sudo /usr/bin/yum -y install ant
+# sudo /usr/bin/yum -y install ant
 
 # Install Oracle Java 7
 echo "## Installing Java ..."
 
-JAVA_INSTALL_FILE=jdk-7u65-linux-x64.rpm
-JAVA_INSTALL_DIR=/opt
+JAVA_INSTALL_FILE=jdk-7u65-linux-x64.tar.gz
+JAVA_INSTALL_DIR=/tmp
 JAVA_INSTALL_PATH=$JAVA_INSTALL_DIR/$JAVA_INSTALL_FILE
 if ! [ -f "$JAVA_INSTALL_PATH" ]
 then
-    echo "RPM file does not exists"
+    echo "Java install file does not exists"
     sudo wget --directory-prefix=$JAVA_INSTALL_DIR --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/7u65-b17/$JAVA_INSTALL_FILE
 else
-    echo "RPM file already exists."
+    echo "Java install file already exists."
 fi
-sudo rpm -Uvh $JAVA_INSTALL_PATH
-
-sudo alternatives --install /usr/bin/java java /usr/java/latest/jre/bin/java 200000
-sudo alternatives --install /usr/bin/javaws javaws /usr/java/latest/jre/bin/javaws 200000
-sudo alternatives --install /usr/bin/javac javac /usr/java/latest/bin/javac 200000
-sudo alternatives --install /usr/bin/jar jar /usr/java/latest/bin/jar 200000
-
-sudo export JAVA_HOME=/usr/java/latest
-sudo export PATH=$PATH:$JAVA_HOME/bin/
+sudo tar -xvf $JAVA_INSTALL_PATH -C $JAVA_INSTALL_DIR
+sudo mkdir /usr/lib/jvm
+sudo mv $JAVA_INSTALL_DIR/jdk1.7* /usr/lib/jvm/jdk1.7.0
+sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.7.0/bin/java" 1
+sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk1.7.0/bin/javac" 1
+sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/jvm/jdk1.7.0/bin/javaws" 1
+sudo chmod a+x /usr/bin/java
+sudo chmod a+x /usr/bin/javac
+sudo chmod a+x /usr/bin/javaws
 
 # Setup necessary directories used by Apache Cassandra
 echo "## Creating directories for Apache Cassandra"
