@@ -19,7 +19,7 @@ for {set i 0} {$i < $maxnode} {incr i} {
         tb-set-node-os $node($i) $ostype
         tb-set-hardware $node($i) $nodetype
         append lan "$node($i) "
-        set initscript($i) [$node($i) program-agent -command "sudo /scratch/ISS/shin14/repos/morphous-cassandra-emulab-script/scripts/init-server-script-ubuntu12.04.sh node-$i >& /tmp/init-script.log"]
+        set initscript($i) [$node($i) program-agent -command "sudo /scratch/ISS/shin14/repos/morphous-cassandra-emulab-script/scripts/init-node-script-ubuntu12.04.sh node-$i >& /tmp/init-script.log"]
         if { $i == 0 } {
             $ns at 1 "$initscript($i) start"
         } else {
@@ -33,6 +33,9 @@ set loadgen($i) [$ns node]
 tb-set-node-os $loadgen($i) $ostype
 tb-set-hardware $loadgen($i) $nodetype
 append lan "$loadgen($i) "
+set initscriptloadgen($i) [$node($i) program-agent -command "sudo /scratch/ISS/shin14/repos/morphous-cassandra-emulab-script/scripts/init-loadgen-server-script-ubuntu12.04.sh >& /tmp/init-script.log"]
+$ns at 1 "$initscriptloadgen($i) start"
+
 
 # Topology
 #LAN
