@@ -31,6 +31,6 @@ sudo chmod a+x /usr/bin/javaws
 
 SCRIPT_PATH=/scratch/ISS/shin14/repos/morphous-cassandra-emulab-script/scripts
 # Git pull
-cd SCRIPT_PATH
+cd $SCRIPT_PATH
 git pull
 
