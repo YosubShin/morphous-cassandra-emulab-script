@@ -56,6 +56,7 @@ sudo mkdir --mode=777 /var/log/cassandra
 echo "## Setting up ports used by Apache Cassandra"
 sudo iptables -A INPUT -p tcp --dport 7000 -j ACCEPT
 sudo iptables -A INPUT -p tcp --dport 9160 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 9042 -j ACCEPT
 
 # Copy Cassandra to local machine
 echo "## Copying Cassandra to local machine"
@@ -395,7 +396,7 @@ native_transport_port: 9042
 # native_transport_max_frame_size_in_mb: 256
 
 # Whether to start the thrift rpc server.
-start_rpc: true
+start_rpc: $NODE_ADDRESS
 
 # The address to bind the Thrift RPC service and native transport
 # server -- clients connect here.
