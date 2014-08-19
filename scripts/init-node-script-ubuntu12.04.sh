@@ -396,7 +396,7 @@ native_transport_port: 9042
 # native_transport_max_frame_size_in_mb: 256
 
 # Whether to start the thrift rpc server.
-start_rpc: $NODE_ADDRESS
+start_rpc: true
 
 # The address to bind the Thrift RPC service and native transport
 # server -- clients connect here.
@@ -407,7 +407,7 @@ start_rpc: $NODE_ADDRESS
 # Note that unlike ListenAddress above, it is allowed to specify 0.0.0.0
 # here if you want to listen on all interfaces, but that will break clients 
 # that rely on node auto-discovery.
-rpc_address: localhost
+rpc_address: $NODE_ADDRESS
 # port for Thrift to listen for clients on
 rpc_port: 9160
 
