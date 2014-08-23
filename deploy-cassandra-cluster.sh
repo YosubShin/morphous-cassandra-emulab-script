@@ -30,6 +30,7 @@ fi
 cd $REMOTE_BASE_DIR/$CASSANDRA_SRC_DIR_NAME
 
 echo "## Building Cassandra source"
+rm -rf build
 ant clean build
 
 echo "## Ant Build is over. Invoking redeploy script on remote nodes"
