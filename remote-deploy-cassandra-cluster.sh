@@ -16,6 +16,7 @@ REMOTE_REDEPLOY_SCRIPT=$REMOTE_SCRIPT_DIR/redeploy-node-script.sh
 REMOTE_DEPLOY_CLUSTER_SCRIPT=$REMOTE_SCRIPT_DIR/deploy-cassandra-cluster.sh
 
 echo "## Archiving Cassandra source files..."
+cd $CASSANDRA_SRC_DIR_BASE
 tar -czf $CASSANDRA_SRC_TAR_FILE -C $CASSANDRA_SRC_DIR_BASE $CASSANDRA_SRC_DIR_NAME
 
 echo "## Deleting remote host's Cassandra source files"

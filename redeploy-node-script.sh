@@ -749,4 +749,4 @@ preheat_kernel_page_cache: false
 EOF
 
 echo "## Starting Cassandra"
-sudo $CASSANDRA_HOME/bin/cassandra > /tmp/init-script-$(date).log
+sudo $CASSANDRA_HOME/bin/cassandra > /tmp/init-script-`date '+%Y-%m-%d-%T'`.log
