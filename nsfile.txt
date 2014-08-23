@@ -2,7 +2,8 @@
 # ---------- ----------- -----------------------------------------------------
 # 2013-07-31 N/A         Copied from MongoTwo experiment's setup
 # 2014-08-16 Yosub       Added start command
-# 2014-08-17 Yosub       Changed OS from CentOS to Ubuntu because of 'sudo' issue
+# 2014-08-17 Yosub       Changed OS from CentOS to Ubuntu because of 'sudo' issue 
+# 2014-08-23 Yosub       Updated to accomodate modified init script. No longer need delayed start for other nodes
 
 set ns [new Simulator]
 source tb_compat.tcl
@@ -19,12 +20,8 @@ for {set i 0} {$i < $maxnode} {incr i} {
         tb-set-node-os $node($i) $ostype
         tb-set-hardware $node($i) $nodetype
         append lan "$node($i) "
-        set initscript($i) [$node($i) program-agent -command "sudo /scratch/ISS/shin14/repos/morphous-cassandra-emulab-script/scripts/init-node-script-ubuntu12.04.sh node-$i >& /tmp/init-script.log"]
-        if { $i == 0 } {
-            $ns at 1 "$initscript($i) start"
-        } else {
-            $ns at 60 "$initscript($i) start"
-        }
+        set initscript($i) [$node($i) program-agent -command "sudo /scratch/ISS/shin14/repos/morphous-cassandra-emulab-script/init-node-script-ubuntu12.04.sh node-$i >& /tmp/init-node-script.log"]
+        $ns at 1 "$initscript($i) start"
 }
 
 # Load generator

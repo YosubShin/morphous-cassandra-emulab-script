@@ -40,12 +40,12 @@ for (( i=0; i < CLUSTER_SIZE; i++))
 do
 if [ $i == 0 ]; then
     echo "## Invoking redeploy script on node-$i"
-    ssh -T -o "StrictHostKeyChecking no" node-$i "sudo $REMOTE_REDEPLOY_SCRIPT node-$i"
+    ssh -o "StrictHostKeyChecking no" node-$i "sudo $REMOTE_REDEPLOY_SCRIPT node-$i"
     echo "## Finished invoking redeploy script on node-$i"
 else
     (
     echo "## Invoking redeploy script on node-$i"
-    ssh -T -o "StrictHostKeyChecking no" node-$i "sudo $REMOTE_REDEPLOY_SCRIPT node-$i"
+    ssh -o "StrictHostKeyChecking no" node-$i "sudo $REMOTE_REDEPLOY_SCRIPT node-$i"
     echo "## Finished invoking redeploy script on node-$i"
     ) &
 fi
