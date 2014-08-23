@@ -27,6 +27,9 @@ EOF
 echo "## Uploading archived Cassandra source to remote host"
 scp $CASSANDRA_SRC_TAR_FILE $SSH_USER@$SSH_URL:$REMOTE_BASE_DIR
 
+# Clean up tar file
+rm $CASSANDRA_SRC_TAR_FILE
+
 echo "## Executing cluster redeploy script on remote host"
 ssh -T $SSH_USER@$SSH_URL "setenv REMOTE_BASE_DIR $REMOTE_BASE_DIR; setenv CASSANDRA_SRC_TAR_FILE $CASSANDRA_SRC_TAR_FILE; setenv CASSANDRA_SRC_DIR_NAME $CASSANDRA_SRC_DIR_NAME; setenv CLUSTER_SIZE $CLUSTER_SIZE; setenv REMOTE_REDEPLOY_SCRIPT $REMOTE_REDEPLOY_SCRIPT; /bin/bash" << 'EOF'
 # Now in remote machine's shell
@@ -36,6 +39,10 @@ export JAVA_HOME=/usr/lib/jvm/jdk1.7.0
 echo "## Unzipping Cassandra source"
 cd $REMOTE_BASE_DIR
 tar -xzf $CASSANDRA_SRC_TAR_FILE
+
+# Clean up tar file
+rm $CASSANDRA_SRC_TAR_FILE
+
 cd $CASSANDRA_SRC_DIR_NAME
 
 echo "## Building Cassandra source"
@@ -44,7 +51,7 @@ ant build
 # Invoke redeploy script for each node
 for (( i=0; i < CLUSTER_SIZE; i++))
 do
-echo "## Invoking redeploy script on node $i"
+echo "## Invoking redeploy script on node-$i"
 ssh -T -o "StrictHostKeyChecking no" node-$i "sudo $REMOTE_REDEPLOY_SCRIPT node-$i"
 done
 

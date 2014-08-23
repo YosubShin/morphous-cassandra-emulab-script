@@ -26,7 +26,7 @@ echo "## Killing & Deleting existing Cassandra node"
 if [ -d "$CASSANDRA_HOME" ]
 then
     sudo pkill -f CassandraDaemon
-    sleep 5000
+    sleep 5
 
     if [ "$MODE" == "hard" ]
     then
