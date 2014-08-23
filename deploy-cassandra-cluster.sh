@@ -9,6 +9,7 @@ CASSANDRA_SRC_TAR_FILE=cassandra-src.tar.gz
 REMOTE_BASE_DIR=/scratch/ISS/shin14/repos
 REMOTE_SCRIPT_DIR=$REMOTE_BASE_DIR/morphous-cassandra-emulab-script
 REMOTE_REDEPLOY_SCRIPT=$REMOTE_SCRIPT_DIR/redeploy-node-script.sh
+SSH_USER=yossupp
 
 # Set JAVA_HOME to build with Ant
 export JAVA_HOME=/usr/lib/jvm/jdk1.7.0
@@ -40,12 +41,12 @@ for (( i=0; i < CLUSTER_SIZE; i++))
 do
 if [ $i == 0 ]; then
     echo "## Invoking redeploy script on node-$i"
-    ssh -o "StrictHostKeyChecking no" node-$i "sudo $REMOTE_REDEPLOY_SCRIPT node-$i"
+    ssh -o "StrictHostKeyChecking no" $SSH_USER@node-$i "sudo $REMOTE_REDEPLOY_SCRIPT node-$i"
     echo "## Finished invoking redeploy script on node-$i"
 else
     (
     echo "## Invoking redeploy script on node-$i"
-    ssh -o "StrictHostKeyChecking no" node-$i "sudo $REMOTE_REDEPLOY_SCRIPT node-$i"
+    ssh -o "StrictHostKeyChecking no" $SSH_USER@node-$i "sudo $REMOTE_REDEPLOY_SCRIPT node-$i"
     echo "## Finished invoking redeploy script on node-$i"
     ) &
 fi
