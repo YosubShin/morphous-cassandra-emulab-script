@@ -10,6 +10,9 @@ CASSANDRA_HOME=/opt/cassandra
 
 echo "##(Re)Deploying Cassandra Node on $NODE_ADDRESS"
 
+# Set JAVA_HOME to run Cassandra
+export JAVA_HOME=/usr/lib/jvm/jdk1.7.0
+
 if [ $# -lt 1 ]
 then
     echo $"Usage: $0 <hostname> [<mode>]"

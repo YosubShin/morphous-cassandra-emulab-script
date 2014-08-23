@@ -43,7 +43,7 @@ tar -xzf $CASSANDRA_SRC_TAR_FILE
 # Clean up tar file
 rm $CASSANDRA_SRC_TAR_FILE
 
-cd $CASSANDRA_SRC_DIR_NAME
+cd $REMOTE_BASE_DIR/$CASSANDRA_SRC_DIR_NAME
 
 echo "## Building Cassandra source"
 ant build
