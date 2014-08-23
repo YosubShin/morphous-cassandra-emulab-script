@@ -43,5 +43,7 @@ sudo chmod a+x /usr/bin/java
 sudo chmod a+x /usr/bin/javac
 sudo chmod a+x /usr/bin/javaws
 
-echo "## Executing deploy Cassandra script..."
-/scratch/ISS/shin14/repos/morphous-cassandra-emulab-script/deploy-cassandra-cluster.sh
+if [ $NODE_ADDRESS == "node-0" ]; then
+    echo "## Executing deploy Cassandra script..."
+    /scratch/ISS/shin14/repos/morphous-cassandra-emulab-script/deploy-cassandra-cluster.sh
+fi
