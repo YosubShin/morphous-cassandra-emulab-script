@@ -20,7 +20,7 @@ for {set i 0} {$i < $maxnode} {incr i} {
         tb-set-node-os $node($i) $ostype
         tb-set-hardware $node($i) $nodetype
         append lan "$node($i) "
-        set initscript($i) [$node($i) program-agent -command "sudo /scratch/ISS/shin14/repos/morphous-cassandra-emulab-script/init-node-script-ubuntu12.04.sh node-$i >& /tmp/init-node-script.log"]
+        set initscript($i) [$node($i) program-agent -command "/scratch/ISS/shin14/repos/morphous-cassandra-emulab-script/init-node-script-ubuntu12.04.sh node-$i >& /tmp/init-node-script.log"]
         $ns at 1 "$initscript($i) start"
 }
 
