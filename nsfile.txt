@@ -30,7 +30,7 @@ set loadgen($i) [$ns node]
 tb-set-node-os $loadgen($i) $ostype
 tb-set-hardware $loadgen($i) $nodetype
 append lan "$loadgen($i) "
-set initscriptloadgen($i) [$loadgen($i) program-agent -command "sudo /scratch/ISS/shin14/repos/morphous-cassandra-emulab-script/scripts/init-loadgen-server-script-ubuntu12.04.sh >& /tmp/init-script.log"]
+set initscriptloadgen($i) [$loadgen($i) program-agent -command "/scratch/ISS/shin14/repos/morphous-cassandra-emulab-script/init-loadgen-server-script-ubuntu12.04.sh >& /tmp/init-script.log"]
 $ns at 1 "$initscriptloadgen($i) start"
 
 
