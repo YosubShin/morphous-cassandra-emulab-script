@@ -4,6 +4,7 @@
 # 2014-08-01 Yosub       Initial version
 # 2014-08-14 Yosub       Embedded cassandra.yaml
 # 2014-08-22 Yosub       Modularize
+# 2014-08-26 Yosub       Fix minor bugs
 
 NODE_ADDRESS=$1
 
@@ -18,7 +19,7 @@ CASSANDRA_PATH=/scratch
 # Install necessary binaries
 echo "## Installing necessary binaries ..."
 sudo apt-get update
-sudo apt-get install ant
+sudo apt-get install ant -y
 
 # Install Oracle Java 7
 echo "## Installing Java ..."
