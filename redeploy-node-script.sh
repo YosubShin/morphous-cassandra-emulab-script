@@ -22,8 +22,9 @@ fi
 MODE="soft"
 if [ ! -z "$2" ]
 then
-    MODE = $2
+    MODE=$2
 fi
+echo "The mode is:" $MODE
 
 echo "## Killing & Deleting existing Cassandra node"
 if [ -d "$CASSANDRA_HOME" ]

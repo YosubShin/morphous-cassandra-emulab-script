@@ -18,8 +18,9 @@ REMOTE_DEPLOY_CLUSTER_SCRIPT=$REMOTE_SCRIPT_DIR/deploy-cassandra-cluster.sh
 MODE="soft"
 if [ ! -z "$1" ]
 then
-    MODE = $1
+    MODE=$1
 fi
+echo "The mode is:" $MODE
 
 echo "## Archiving Cassandra source files..."
 cd $CASSANDRA_SRC_DIR_BASE
