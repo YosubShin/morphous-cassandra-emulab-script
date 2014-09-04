@@ -20,6 +20,7 @@ CASSANDRA_PATH=/scratch
 echo "## Installing necessary binaries ..."
 sudo apt-get update
 sudo apt-get install ant -y
+sudo apt-get install pssh -y
 
 # Install Oracle Java 7
 echo "## Installing Java ..."
