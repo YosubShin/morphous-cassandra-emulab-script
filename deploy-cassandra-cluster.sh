@@ -2,6 +2,7 @@
 # DATE       AUTHOR      COMMENT
 # ---------- ----------- -----------------------------------------------------
 # 2014-08-22 Yosub       Initial version
+# 2014-09-10 Yosub       Inspect Cassandra's running status after deploy
 
 CLUSTER_SIZE=10
 CASSANDRA_SRC_DIR_NAME=apache-cassandra-2.0.8-src-0713
@@ -9,13 +10,14 @@ CASSANDRA_SRC_TAR_FILE=cassandra-src.tar.gz
 REMOTE_BASE_DIR=/scratch/ISS/shin14/repos
 REMOTE_SCRIPT_DIR=$REMOTE_BASE_DIR/morphous-cassandra-emulab-script
 REMOTE_REDEPLOY_SCRIPT=$REMOTE_SCRIPT_DIR/redeploy-node-script.sh
+CASSANDRA_HOME=/opt/cassandra
 
 MODE="soft"
 if [ ! -z "$1" ]
 then
     MODE=$1
 fi
-echo "The mode is:" $MODE
+echo "## Deploying Cassandra cluster with mode: " $MODE
 
 # Set JAVA_HOME to build with Ant
 export JAVA_HOME=/usr/lib/jvm/jdk1.7.0
@@ -59,5 +61,5 @@ fi
 done
 
 wait
-echo "## Finished invoking redeploy scripts on all nodes."
 
+$CASSANDRA_HOME/bin/nodetool status
