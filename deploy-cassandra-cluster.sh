@@ -62,4 +62,6 @@ done
 
 wait
 
+sleep 10
+
 $CASSANDRA_HOME/bin/nodetool status
