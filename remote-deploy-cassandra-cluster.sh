@@ -3,7 +3,7 @@
 # ---------- ----------- -----------------------------------------------------
 # 2014-08-19 Yosub       Initial version
 
-CLUSTER_SIZE=10
+CLUSTER_SIZE=12
 CASSANDRA_SRC_DIR_BASE=/Users/Daniel/Dropbox/Illinois/research/repos
 CASSANDRA_SRC_DIR_NAME=apache-cassandra-2.0.8-src-0713
 CASSANDRA_SRC_DIR=$CASSANDRA_SRC_DIR_BASE/$CASSANDRA_SRC_DIR_NAME
