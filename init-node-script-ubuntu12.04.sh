@@ -6,18 +6,14 @@
 # 2014-08-22 Yosub       Modularize
 # 2014-08-26 Yosub       Fix minor bugs
 
-NODE_ADDRESS=$1
-
-if [ $# -ne 1 ]
+if [ $# -ne 2 ]
 then
-    echo $"Usage: $0 <hostname>"
+    echo $"Usage: $0 <hostname> <cluster_size>"
     exit 2
 fi
 
-if [ ! -z "$2" ]
-then
-    CLUSTER_SIZE=$2
-fi
+NODE_ADDRESS=$1
+CLUSTER_SIZE=$2
 
 CASSANDRA_PATH=/scratch
 
