@@ -16,6 +16,12 @@ if [ ! -z "$1" ]
 then
     MODE=$1
 fi
+
+if [ ! -z "$2" ]
+then
+    CLUSTER_SIZE=$2
+fi
+
 echo "## Deploying Cassandra cluster with mode: " $MODE
 
 # Set JAVA_HOME to build with Ant
